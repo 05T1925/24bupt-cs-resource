@@ -1,0 +1,29 @@
+# Codex/runtime workspace files
+.agents/
+.codex/
+outputs/
+work/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+*.bak
+
+# Common build/cache output
+__pycache__/
+*.py[cod]
+.pytest_cache/
+node_modules/
+dist/
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+*.o
+*.obj
+*.exe
+*.out
+*.class
+
