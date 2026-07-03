@@ -1,0 +1,102 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MOD 1000000007
+#define MAX_STATES 128  // 因为m<=7，状态数最多128
+
+typedef struct {
+    long long ar[MAX_STATES][MAX_STATES];
+} Matrix;
+
+// 矩阵乘法：计算 A * B，结果存入 E
+Matrix matrix_multiply(Matrix A, Matrix B, int M) {
+    Matrix E;
+    memset(E.ar, 0, sizeof(E.ar));
+    for (int i = 0; i < M; i++) {
+        for (int j = 0; j < M; j++) {
+            for (int k = 0; k < M; k++) {
+                E.ar[i][j] = (E.ar[i][j] + A.ar[i][k] * B.ar[k][j]) % MOD;
+            }
+        }
+    }
+    return E;
+}
+
+// 深度优先搜索：构建状态转移矩阵
+void dfs(int now, int nxt, int from, int m, int M, Matrix *C) {
+    // 当前列已填满（所有行都填充）
+    if (now == M - 1) {
+        C->ar[nxt][from] = (C->ar[nxt][from] + 1) % MOD;
+        return;
+    }
+
+    // 遍历每一行，找到第一个空位
+    for (int i = 0; i < m; i++) {
+        if ((now & (1 << i))) continue; // 该行已填充，跳过
+
+
+        // 计算相邻行的位掩码
+        int fi = ((i - 1 >= 0) ? (1 << (i - 1)) : 0);
+        int ti = (1 << i);
+        int li = (i + 1 < m) ? (1 << (i + 1)) : 0;
+
+        // 情况1：覆盖当前列[i]、[i+1]行和下一列[i]行
+        if (li && !(nxt & ti) && !(now & li)) {
+            dfs(now | ti | li, nxt | ti, from, m, M, C);
+        }
+
+        // 情况2：覆盖当前列[i]行和下一列[i]、[i+1]行
+        if (li && !(nxt & ti) && !(nxt & li)) {
+            dfs(now | ti, nxt | ti | li, from, m, M, C);
+        }
+
+        // 情况3：覆盖当前列[i]、[i+1]行和下一列[i+1]行
+        if (li && !(nxt & li) && !(now & li)) {
+            dfs(now | ti | li, nxt | li, from, m, M, C);
+        }
+
+        // 情况4：覆盖当前列[i]行和下一列[i-1]、[i]行
+        if (fi && !(nxt & fi) && !(nxt & ti)) {
+            dfs(now | ti, nxt | fi | ti, from, m, M, C);
+        }
+
+        // 只处理第一个空位，避免重复
+        break;
+    }
+}
+
+int main() {
+    long long n;
+    int m;
+    scanf("%lld %d", &n, &m);
+
+    int M = 1 << m; // 状态总数
+    Matrix C;
+    memset(C.ar, 0, sizeof(C.ar));
+
+    // 构建转移矩阵：枚举所有起始状态
+    for (int from = 0; from < M; from++) {
+        dfs(from, 0, from, m, M, &C);
+    }
+
+    // 初始化单位矩阵（初始状态向量）
+    Matrix B;
+    memset(B.ar, 0, sizeof(B.ar));
+    for (int i = 0; i < M; i++) {
+        B.ar[i][i] = 1;
+    }
+
+    // 矩阵快速幂：计算 C^n
+    while (n) {
+        if (n & 1) {
+            B = matrix_multiply(C, B, M); // B = C * B
+        }
+        C = matrix_multiply(C, C, M);    // C = C * C
+        n >>= 1;                         // n = n / 2
+    }
+
+    // 输出结果：初始状态0经过n次转移后回到状态0的方案数
+    printf("%lld\n", B.ar[0][0] % MOD);
+    return 0;
+}

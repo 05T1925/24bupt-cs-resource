@@ -6,6 +6,8 @@ work/
 
 # OS/editor noise
 .DS_Store
+._*
+**/._*
 Thumbs.db
 desktop.ini
 *.swp
@@ -53,6 +55,7 @@ out/
 *.vcxproj.user
 *.o
 *.out
+*.aps
 cmake-build-*/
 CMakeFiles/
 CMakeCache.txt
@@ -110,7 +113,16 @@ __pycache__/
 node_modules/
 dist/
 
+# Large design/video/archive deliverables; add intentionally with git add -f if needed.
+*.psd
+*.ai
+*.rar
+*.zip
+*.7z
+*.mp4
+
 # GitHub rejects files larger than 100 MiB.
 *.sumnote*.docx
 cs大二上/离散/离散资料/离散数学及其应用（原书第8版）中文版.pdf
 cs大二上/离散/离散资料/离散数学-练习答案.pdf
+other_lessons/计导课设/demo/src/res/清华大学笃实学院-寒假课堂-2025.pptx
