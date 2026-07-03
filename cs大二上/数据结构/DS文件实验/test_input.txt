@@ -1,0 +1,90 @@
+This is a test file for Huffman coding compression algorithm.
+Hello world! This is a simple test to demonstrate the file compression
+and keyword search functionality. Test test test.
+Repeated patterns: aaaa bbbb cccc dddd eeee ffff.
+This is a test file for Huffman coding compression algorithm.
+Hello world! This is a simple test to demonstrate the file compression
+and keyword search functionality. Test test test.
+Repeated patterns: aaaa bbbb cccc dddd eeee ffff.
+This is a test file for Huffman coding compression algorithm.
+Hello world! This is a simple test to demonstrate the file compression
+and keyword search functionality. Test test test.
+Repeated patterns: aaaa bbbb cccc dddd eeee ffff.
+This is a test file for Huffman coding compression algorithm.
+Hello world! This is a simple test to demonstrate the file compression
+and keyword search functionality. Test test test.
+Repeated patterns: aaaa bbbb cccc dddd eeee ffff.
+This is a test file for Huffman coding compression algorithm.
+Hello world! This is a simple test to demonstrate the file compression
+and keyword search functionality. Test test test.
+Repeated patterns: aaaa bbbb cccc dddd eeee ffff.
+This is a test file for Huffman coding compression algorithm.
+Hello world! This is a simple test to demonstrate the file compression
+and keyword search functionality. Test test test.
+Repeated patterns: aaaa bbbb cccc dddd eeee ffff.
+This is a test file for Huffman coding compression algorithm.
+Hello world! This is a simple test to demonstrate the file compression
+and keyword search functionality. Test test test.
+Repeated patterns: aaaa bbbb cccc dddd eeee ffff.
+This is a test file for Huffman coding compression algorithm.
+Hello world! This is a simple test to demonstrate the file compression
+and keyword search functionality. Test test test.
+Repeated patterns: aaaa bbbb cccc dddd eeee ffff.
+This is a test file for Huffman coding compression algorithm.
+Hello world! This is a simple test to demonstrate the file compression
+and keyword search functionality. Test test test.
+Repeated patterns: aaaa bbbb cccc dddd eeee ffff.
+This is a test file for Huffman coding compression algorithm.
+Hello world! This is a simple test to demonstrate the file compression
+and keyword search functionality. Test test test.
+Repeated patterns: aaaa bbbb cccc dddd eeee ffff.
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD
+AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD

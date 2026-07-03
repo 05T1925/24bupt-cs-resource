@@ -1,0 +1,311 @@
+（1）指针作函数参数，代替数组名。
+6-31 实验10_4_设计函数 locatesubstr
+设计函数 char * locatesubstr(char * str1,char * str2)，查找str2指向的字符串在str1指向的字符串中首次出现的位置，返回指向该位置的指针。若str2指向的字符串不包含在str1指向的字符串中，则返回空指针NULL。
+思路1：使用strstr函数
+char * locatesubstr(char *str1,char *str2){
+   	return strstr(str1,str2);
+}
+思路2：自己写子串匹配函数。
+char * locatesubstr(char * str1,char * str2){
+	char * ps;
+	int m=strlen(str2);
+   	for(ps=str1; *ps!='\0'; ps++){ //str[i],i++	//*ps !=0 // while (*ps)
+		if (strncmp(ps,str2,m)==0)
+     		return ps;
+   	}
+   	return NULL;
+}
+
+6-33 实验10_8_设计函数 void delcharfun(char *str,char ch)
+设计函数 void delcharfun(char *str,char ch)实现从字符串str中删除指定的字符ch。同一字母的大、小写按不同字符处理。
+思路：类似整数数组的删除元素设计，注意可能删除多次。
+void delcharfun(char *str,char ch)
+{	int i,j;
+	for (i=0; str[i]!='\0'; )
+		if (str[i]==ch){
+			for(j=i+1; str[j]!='\0'; j++) 
+				str[j-1]=str[j];
+			str[j-1]='\0'; //删除元素后修正数组末尾结束符
+		} else i++;
+}
+
+（2）指针用来保存动态内存分配的数组空间。
+7-54 实验10_6_动态分配内存_1
+已知正整数n，你要利用malloc函数动态开辟一个长度为n的整型数组，然后读取n个整数存入该数组中。再将这n个整数全部改为其相反数（例如10的相反数是－10，－10的相反数是10）的10倍，然后将其输出。
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+	int n;
+	int i;
+	scanf("%d",&n);
+	int * arr=(int *)malloc(sizeof(int)*n);
+	for(i=0;i<n;i++)
+	{
+		scanf("%d",arr+i);   //&arr[i], arr+i
+		arr[i] *= -10;
+	}
+	for(i=0;i<n;i++)
+	{
+		printf("%d%c",arr[i],i==n-1?'\n':' ');
+	}
+	free(arr);
+	return 0;
+}
+
+6-29 实验10_2_动态内存分配函数_1
+1、设计函数int * create(int n) ;，根据整数n创建一个长度为n的整型动态一维数组，并返回动态数组第一个元素的地址。
+int * create(int n)
+{
+	int * arr = (int *)malloc(sizeof(int)*n);
+	return arr;
+}
+2、设计函数 void cal(int * array, int size) ;该函数可计算array 所指向的动态一维数组中存储的size个整数的和及平均值，同时寻找其中的最大值、最小值。
+void cal(int arr[], int size)
+{
+	int i;
+	int sum=0;
+	int maxn=-1e9,minn=1e9;
+	for(i=0;i<size;i++)
+	{
+		scanf("%d",arr+i);
+		sum+=arr[i];
+		maxn=maxn>arr[i]?maxn:arr[i];
+		minn=minn<arr[i]?minn:arr[i];
+	}
+	printf("%d\n",sum);
+	printf("%.2f\n",(double)sum/size);
+	printf("%d\n",maxn);
+	printf("%d\n",minn);
+}
+
+7-55 实验10_7_动态分配内存_2
+已知正整数n、m，你要利用malloc函数动态开辟一个n行、m列的整型二维数组，然后读取nm个整数存入该数组中。再将这nm个整数全部改为其相反数的10倍，然后将其输出。
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+	int ** p,n,m,i,j;
+	scanf("%d%d",&n,&m); 
+	p=malloc(sizeof(int *)*n);  //p is int **, p pointer n array pointers.
+	for(i=0;i<n;i++){
+		p[i]=malloc(sizeof(int)*m); 	//
+		for(j=0;j<m;j++){
+			scanf("%d",&p[i][j]);
+		} 
+	}
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			printf("%d",p[i][j]*(-10));
+			if(j<m-1){
+				printf(" ");
+			}
+		}
+		if(i<n-1){
+			printf("\n");
+		}
+	}
+	free(p);
+}
+
+6-30 实验10_3_动态内存分配函数_2
+1、设计函数char ** create1(int n) ;，根据整数n创建一个长度为n的字符型指针动态一维数组，并返回动态数组第一个元素的地址。
+char ** create1(int n)
+{
+	char ** p = (char **)malloc(sizeof(char *)*n);
+	return p;
+}
+2、设计函数void create2( char ** strPtr , int n ) ;，为字符型指针动态一维数组strPtr中的每一个元素创建一个长度为n+1字符型动态一维数组。参数n为字符型指针动态一维数组strPtr的长度。
+void create2( char ** strPtr , int n )
+{
+	int i;
+	for(i=0;i<n;i++)
+	{
+		strPtr[i] = (char *)malloc(sizeof(char)*(n+1));
+	}
+}
+3、设计函数void fill(char ** strPtr , int n) ;按要求将相应的字符填入二维动态数组strPtr中,具体格式见样例。
+void fill(char ** strPtr , int n)
+{
+	int i,j;
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<n+i;j++)
+			*(*(strPtr+i)+j)=' ';
+		*(*(strPtr+i)+n+i+1)='\0';
+	}
+	for(i=0;i<n+1;i++)
+	{
+		for(j=0;j<2*n-i;j++)
+			*(*(strPtr+n+i)+j)=' ';
+		*(*(strPtr+n+i)+2*n-i+1)='\0';
+	}
+	*(*(strPtr)+n)='X';
+	*(*(strPtr+n))='X';
+	*(*(strPtr+n)+2*n)='X';
+	*(*(strPtr+2*n)+n)='X';
+	for(i=1;i<n;i++)
+	{
+		*(*(strPtr+i)+(n-i))='/';
+		*(*(strPtr+n+i)+(2*n-i))='/';
+		*(*(strPtr+n+i)+i)='\\';
+		*(*(strPtr+i)+n+i)='\\';
+	}
+}
+
+（3）多个指针构成数组，用于多字符串存储和排序。
+6-32 实验10_5_指针数组初步
+已知一个总长度不超过10000的字符串，字符串中只包含大写字母“A—Z”、小写字母“a—z”和空格‘ ’。空格用于分割单词，空格的个数不超过1000个。你的任务是将字符串中用空格分隔的单词打印出来。
+你要按照如下要求设计分割单词子函数int getString( char * source , char *strPtr[] ) ;
+1.利用指针数组指向每个单词的开始位置。
+2.把字符串中单词结束后的空格改为“\0”,返回单词个数。
+int getString(char * source, char *strPtr[] ){
+    int i,num,flag;
+    for (i=0,num=0,flag=0; source[i]!='\0'; i++){
+        if (source[i]!=' '){
+        	if (flag==0)
+        	    strPtr[num]=source+i;
+            	    flag=1;        	
+		}
+        else if (flag==1){
+        	source[i]='\0';
+            num++; flag=0;
+        }
+    }
+    if (flag==1){
+    	num++; flag=0;
+	} 
+    return num;
+}
+
+7-56 实验10_9_指针数组进阶
+已知正整数n，n的范围是1—100。你要从键盘读入n个字符串，每个字符串的长度不确定，但是n个字符串的总长度不超过100000。你要利用字符指针数组将这n个字符串按照ASCII码顺序进行升序排序，然后再打印到屏幕上。字符串中可能包含ASCII码中的任意字符，每个字符串以换行符结束输入。
+要求：不允许定义如char str[100][100000];这样的二维数组，因为会极大的浪费内存空间。你应定义char str[100000];这样的存储空间，将n个字符串连续的存储在一维字符空间内，然后将这n个字符串的起始位置保存在字符指针数组中，再进行排序操作。
+#include<stdio.h>
+#include<string.h>
+void  strSort(char * a[], int n);
+int main()
+{
+    char    str[100005];
+    char    *strPtr[100]={0};
+    int     i, n, loc;
+    
+	scanf("%d\n",&n);
+	for(i=0,loc=0;i<n;i++)
+	{
+    	strPtr[i]=str+loc;
+		gets(str+loc);
+    	loc += 1+strlen(str+loc);
+	}
+    strSort(strPtr,n);
+    for( i = 0 ; i < n ; i++ )
+        puts(strPtr[i]);
+    
+    return 0;    
+}
+void  strSort(char * a[], int n){
+   char * pt;
+    int i, j, min;
+      /*使用选择排序, 外循环每循环一次,确定a[i]的值*/
+    for(i=0; i<n-1; i++){
+        min=i; 			
+        for(j=i+1; j<n; j++) 	
+            if(strcmp(a[min],a[j])>0)
+                min=j; 	
+	  	if(min!=i){ 		
+			pt=a[min];
+			a[min]=a[i];
+			a[i]=pt;
+		}
+    }
+}
+
+7-57 实验10_10_动态数组进阶
+已知正整数n，n的范围不确定。从键盘读入n个字符串，每个字符串的长度小于1000，要保存到动态数组中。为了能访问到所有的字符串，需要建立一个长度为n的动态指针数组，用于保存n个字符数组的内存地址。在读入每个字符串时，用一个长度为1000的字符数组作为缓冲数组，将字符串读入并求出长度后，再动态分配空间，将缓冲数组中的字符串复制到新分配的动态空间中，并将动态空间的首地址保存到指针数组中。读完n个字符串后你要将这n个字符串按照ASCII码顺序升序排序，然后再打印到屏幕上。
+#include<stdio.h>
+#include<stdlib.h>
+#define LEN 1002
+void strSort(char * a[], int n);
+int main(void)
+{
+   int n,i;
+   char  buf[LEN], ** name;
+   scanf("%d",&n);
+   getchar();//读取回车符，否则系统会认为输入的第一个串会是空串 
+
+   name =(char **) malloc(sizeof(char *)*n); //分配n个指针的动态数组空间
+   for(i = 0; i <= n-1; i++){
+         gets(buf); //读取字符串 
+         name[i] =(char *) malloc(strlen(buf)+1);
+         strcpy(name[i],buf); 
+   }
+   strSort(name, n); /*n书名按字典序升序排序*/
+
+      for(i = 0; i <= n-1; i++)
+         puts(name[i]); 
+      
+      //内存释放,先释放字符串再释放指针数组
+      for(i = 0; i <= n-1; i++){
+          free(name[i]);
+   	    name[i] = NULL;      
+      } 
+   return 0;
+}
+void  strSort(char * a[], int n){
+   	char * pt;
+    int i, j, min;
+      /*使用选择排序, 外循环每循环一次,确定a[i]的值*/
+    for(i=0; i<n-1; i++){
+        min=i; 			
+        for(j=i+1; j<n; j++) 	
+            if(strcmp(a[min],a[j])>0)
+                min=j; 	
+	  	if(min!=i){ 		
+			pt=a[min];
+			a[min]=a[i];
+			a[i]=pt;
+		}
+    }
+}
+
+6-37 实验10_11_字符串排序（指针数组)
+1、设计函数char ** create1( int n ) ;，根据整数n创建一个长度为n的字符指针型动态一维数组，并返回动态数组第一个元素的地址。
+2、设计函数char * create2( int n ) ;，根据整数n创建一个长度为n的字符型动态一维数组，并返回动态数组第一个元素的地址。
+3、设计函数void sort( char** strArray , int size ) ; ，该函数可将字符指针数组strArray所指向的所有字符串按从小到大排列。
+输入第一行为一个不超过200的整数n，代表待排序字符串的个数。然后输入n个字符串，每个字符串长度不会超过100。
+输出为排序后的n个字符串，每个字符串占一行。
+char ** create1(int n)
+{
+	char ** p = (char **)malloc(sizeof(char *)*n);
+	return p;
+}
+char * create2(int n )
+{
+	return (char *)malloc(sizeof(char)*(n+1));
+}
+void  sort(char ** a, int n){
+   char * pt;
+    int i, j, min;
+      /*使用选择排序, 外循环每循环一次,确定a[i]的值*/
+    for(i=0; i<n-1; i++){
+        min=i; 			
+        for(j=i+1; j<n; j++) 	
+            if(strcmp(a[min],a[j])>0)
+                min=j; 	
+	  	if(min!=i){ 		
+			pt=a[min];
+			a[min]=a[i];
+			a[i]=pt;
+		}
+    }
+}
+
+//这里的sort函数，也可以调用qsort，但qsort对指针数组的用法有些特别。
+int cmp(const void * a, const void * b)
+{
+    
+    return strcmp(*(char**)a,*(char**)b); 
+}
+void    sort( char** strArray , int size )
+{
+    qsort(strArray,size,sizeof(char *),cmp);
+}

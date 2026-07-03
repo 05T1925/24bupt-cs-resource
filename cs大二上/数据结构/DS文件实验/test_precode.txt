@@ -1,0 +1,536 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <wchar.h>
+#include <locale.h>
+
+#define MAX_TREE_HT 256
+#define MAX_CHAR 256
+#define MAX_CODE_LEN 256
+#define MAX_FILENAME 256
+
+// 哈夫曼树节点结构
+typedef struct MinHeapNode {
+    unsigned char data;
+    unsigned freq;
+    struct MinHeapNode *left, *right;
+} MinHeapNode;
+
+// 最小堆结构
+typedef struct MinHeap {
+    unsigned size;
+    unsigned capacity;
+    MinHeapNode** array;
+} MinHeap;
+
+// 编码表结构
+typedef struct CodeTable {
+    unsigned char data;
+    char code[MAX_CODE_LEN];
+    int codeLen;
+} CodeTable;
+
+// 全局变量
+CodeTable codeTable[MAX_CHAR];
+int codeTableSize = 0;
+unsigned charCount[MAX_CHAR] = {0};
+
+// 1. 基础哈夫曼编码函数
+MinHeapNode* newNode(unsigned char data, unsigned freq) {
+    MinHeapNode* temp = (MinHeapNode*)malloc(sizeof(MinHeapNode));
+    temp->left = temp->right = NULL;
+    temp->data = data;
+    temp->freq = freq;
+    return temp;
+}
+
+MinHeap* createMinHeap(unsigned capacity) {
+    MinHeap* minHeap = (MinHeap*)malloc(sizeof(MinHeap));
+    minHeap->size = 0;
+    minHeap->capacity = capacity;
+    minHeap->array = (MinHeapNode**)malloc(minHeap->capacity * sizeof(MinHeapNode*));
+    return minHeap;
+}
+
+void swapMinHeapNode(MinHeapNode** a, MinHeapNode** b) {
+    MinHeapNode* t = *a;
+    *a = *b;
+    *b = t;
+}
+
+void minHeapify(MinHeap* minHeap, int idx) {
+    int smallest = idx;
+    int left = 2 * idx + 1;
+    int right = 2 * idx + 2;
+
+    if (left < minHeap->size && 
+        minHeap->array[left]->freq < minHeap->array[smallest]->freq)
+        smallest = left;
+
+    if (right < minHeap->size && 
+        minHeap->array[right]->freq < minHeap->array[smallest]->freq)
+        smallest = right;
+
+    if (smallest != idx) {
+        swapMinHeapNode(&minHeap->array[smallest], &minHeap->array[idx]);
+        minHeapify(minHeap, smallest);
+    }
+}
+
+int isSizeOne(MinHeap* minHeap) {
+    return (minHeap->size == 1);
+}
+
+MinHeapNode* extractMin(MinHeap* minHeap) {
+    MinHeapNode* temp = minHeap->array[0];
+    minHeap->array[0] = minHeap->array[minHeap->size - 1];
+    --minHeap->size;
+    minHeapify(minHeap, 0);
+    return temp;
+}
+
+void insertMinHeap(MinHeap* minHeap, MinHeapNode* minHeapNode) {
+    ++minHeap->size;
+    int i = minHeap->size - 1;
+    while (i && minHeapNode->freq < minHeap->array[(i - 1) / 2]->freq) {
+        minHeap->array[i] = minHeap->array[(i - 1) / 2];
+        i = (i - 1) / 2;
+    }
+    minHeap->array[i] = minHeapNode;
+}
+
+void buildMinHeap(MinHeap* minHeap) {
+    int n = minHeap->size - 1;
+    for (int i = (n - 1) / 2; i >= 0; --i)
+        minHeapify(minHeap, i);
+}
+
+int isLeaf(MinHeapNode* root) {
+    return !(root->left) && !(root->right);
+}
+
+MinHeap* createAndBuildMinHeap(unsigned char data[], unsigned freq[], int size) {
+    MinHeap* minHeap = createMinHeap(size);
+    for (int i = 0; i < size; ++i)
+        minHeap->array[i] = newNode(data[i], freq[i]);
+    minHeap->size = size;
+    buildMinHeap(minHeap);
+    return minHeap;
+}
+
+MinHeapNode* buildHuffmanTree(unsigned char data[], unsigned freq[], int size) {
+    MinHeapNode *left, *right, *top;
+    MinHeap* minHeap = createAndBuildMinHeap(data, freq, size);
+
+    while (!isSizeOne(minHeap)) {
+        left = extractMin(minHeap);
+        right = extractMin(minHeap);
+        top = newNode('$', left->freq + right->freq);
+        top->left = left;
+        top->right = right;
+        insertMinHeap(minHeap, top);
+    }
+    return extractMin(minHeap);
+}
+
+// 2. 编码表生成函数
+void generateCodes(MinHeapNode* root, char* code, int top, CodeTable* codeTable, int* size) {
+    if (root->left) {
+        code[top] = '0';
+        generateCodes(root->left, code, top + 1, codeTable, size);
+    }
+
+    if (root->right) {
+        code[top] = '1';
+        generateCodes(root->right, code, top + 1, codeTable, size);
+    }
+
+    if (isLeaf(root)) {
+        code[top] = '\0';
+        codeTable[*size].data = root->data;
+        strcpy(codeTable[*size].code, code);
+        codeTable[*size].codeLen = top;
+        (*size)++;
+    }
+}
+
+char* getCode(unsigned char c, CodeTable* table, int size) {
+    for (int i = 0; i < size; i++) {
+        if (table[i].data == c)
+            return table[i].code;
+    }
+    return NULL;
+}
+
+// 3. 文件压缩函数
+double compressFile(const char* inputFile, const char* outputFile) {
+    FILE* in = fopen(inputFile, "rb");
+    FILE* out = fopen(outputFile, "wb");
+    
+    if (!in || !out) {
+        printf("文件打开失败!\n");
+        return -1;
+    }
+
+    // 统计字符频率
+    unsigned char c;
+    while (fread(&c, 1, 1, in)) {
+        charCount[c]++;
+    }
+    fseek(in, 0, SEEK_SET);
+
+    // 构建字符和频率数组
+    unsigned char data[MAX_CHAR];
+    unsigned freq[MAX_CHAR];
+    int size = 0;
+    
+    for (int i = 0; i < MAX_CHAR; i++) {
+        if (charCount[i] > 0) {
+            data[size] = (unsigned char)i;
+            freq[size] = charCount[i];
+            size++;
+        }
+    }
+
+    // 构建哈夫曼树和编码表
+    MinHeapNode* root = buildHuffmanTree(data, freq, size);
+    char code[MAX_CODE_LEN];
+    codeTableSize = 0;
+    generateCodes(root, code, 0, codeTable, &codeTableSize);
+
+    // 写入编码表信息
+    fwrite(&size, sizeof(int), 1, out); // 写入字符种类数
+    for (int i = 0; i < size; i++) {
+        fwrite(&data[i], 1, 1, out);
+        fwrite(&freq[i], sizeof(unsigned), 1, out);
+    }
+
+    // 压缩数据
+    unsigned long bitBuffer = 0;
+    int bitCount = 0;
+    long originalSize = 0, compressedSize = 0;
+
+    while (fread(&c, 1, 1, in)) {
+        originalSize++;
+        char* huffmanCode = getCode(c, codeTable, codeTableSize);
+        if (huffmanCode) {
+            for (int i = 0; huffmanCode[i]; i++) {
+                bitBuffer <<= 1;
+                if (huffmanCode[i] == '1')
+                    bitBuffer |= 1;
+                bitCount++;
+
+                if (bitCount == 8) {
+                    fwrite(&bitBuffer, 1, 1, out);
+                    compressedSize++;
+                    bitBuffer = 0;
+                    bitCount = 0;
+                }
+            }
+        }
+    }
+
+    // 处理剩余的位
+    if (bitCount > 0) {
+        bitBuffer <<= (8 - bitCount);
+        fwrite(&bitBuffer, 1, 1, out);
+        compressedSize++;
+    }
+
+    fclose(in);
+    fclose(out);
+
+    double compressionRatio = (1 - (double)compressedSize / originalSize) * 100;
+    printf("原始大小: %ld 字节\n", originalSize);
+    printf("压缩后大小: %ld 字节\n", compressedSize);
+    printf("压缩率: %.2f%%\n", compressionRatio);
+
+    return compressionRatio;
+}
+
+// 4. 文件解压函数
+void decompressFile(const char* inputFile, const char* outputFile) {
+    FILE* in = fopen(inputFile, "rb");
+    FILE* out = fopen(outputFile, "wb");
+    
+    if (!in || !out) {
+        printf("文件打开失败!\n");
+        return;
+    }
+
+    // 读取编码表信息
+    int size;
+    fread(&size, sizeof(int), 1, in);
+    
+    unsigned char data[MAX_CHAR];
+    unsigned freq[MAX_CHAR];
+    
+    for (int i = 0; i < size; i++) {
+        fread(&data[i], 1, 1, in);
+        fread(&freq[i], sizeof(unsigned), 1, in);
+    }
+
+    // 重建哈夫曼树
+    MinHeapNode* root = buildHuffmanTree(data, freq, size);
+    
+    // 解压数据
+    MinHeapNode* current = root;
+    unsigned char byte;
+    int bitPos = 7;
+    
+    while (fread(&byte, 1, 1, in)) {
+        for (int i = 7; i >= 0; i--) {
+            int bit = (byte >> i) & 1;
+            
+            if (bit == 0)
+                current = current->left;
+            else
+                current = current->right;
+
+            if (isLeaf(current)) {
+                fwrite(&current->data, 1, 1, out);
+                current = root;
+            }
+        }
+    }
+
+    fclose(in);
+    fclose(out);
+    printf("文件解压完成: %s\n", outputFile);
+}
+
+// 5. BM算法检索函数（基础版本）
+void computeBadChar(char* pattern, int patternLen, int badchar[256]) {
+    for (int i = 0; i < 256; i++)
+        badchar[i] = -1;
+
+    for (int i = 0; i < patternLen; i++)
+        badchar[(unsigned char)pattern[i]] = i;
+}
+
+int searchBM(char* text, char* pattern) {
+    int count = 0;
+    int textLen = strlen(text);
+    int patternLen = strlen(pattern);
+    int badchar[256];
+
+    computeBadChar(pattern, patternLen, badchar);
+
+    int s = 0;
+    while (s <= (textLen - patternLen)) {
+        int j = patternLen - 1;
+
+        while (j >= 0 && pattern[j] == text[s + j])
+            j--;
+
+        if (j < 0) {
+            count++;
+            s += (s + patternLen < textLen) ? patternLen - badchar[text[s + patternLen]] : 1;
+        } else {
+            s += (1 > j - badchar[text[s + j]]) ? 1 : j - badchar[text[s + j]];
+        }
+    }
+
+    return count;
+}
+
+// 6. 支持通配符的检索函数
+int searchWithWildcard(char* text, char* pattern) {
+    int count = 0;
+    int textLen = strlen(text);
+    int patternLen = strlen(pattern);
+
+    for (int i = 0; i <= textLen - patternLen; i++) {
+        int match = 1;
+        for (int j = 0; j < patternLen; j++) {
+            if (pattern[j] != '?' && pattern[j] != text[i + j]) {
+                match = 0;
+                break;
+            }
+        }
+        if (match) {
+            count++;
+            printf("在位置 %d 找到匹配\n", i);
+        }
+    }
+
+    return count;
+}
+
+// 7. 中文文档处理函数
+void processChineseDocument(const char* filename) {
+    setlocale(LC_ALL, "zh_CN.UTF-8");
+    
+    FILE* file = fopen(filename, "r, ccs=UTF-8");
+    if (!file) {
+        printf("无法打开中文文档: %s\n", filename);
+        return;
+    }
+
+    wchar_t wc;
+    int chineseCount = 0, totalChars = 0;
+    
+    while ((wc = fgetwc(file)) != WEOF) {
+        totalChars++;
+        if (wc > 127) { // 中文字符
+            chineseCount++;
+        }
+    }
+
+    fclose(file);
+    printf("中文文档分析:\n");
+    printf("总字符数: %d\n", totalChars);
+    printf("中文字符数: %d\n", chineseCount);
+    printf("中文字符比例: %.2f%%\n", (float)chineseCount / totalChars * 100);
+}
+
+// 8. KMP算法检索函数（其他高效算法）
+void computeLPS(char* pattern, int patternLen, int* lps) {
+    int len = 0;
+    lps[0] = 0;
+    int i = 1;
+
+    while (i < patternLen) {
+        if (pattern[i] == pattern[len]) {
+            len++;
+            lps[i] = len;
+            i++;
+        } else {
+            if (len != 0) {
+                len = lps[len - 1];
+            } else {
+                lps[i] = 0;
+                i++;
+            }
+        }
+    }
+}
+
+int searchKMP(char* text, char* pattern) {
+    int count = 0;
+    int textLen = strlen(text);
+    int patternLen = strlen(pattern);
+    int* lps = (int*)malloc(sizeof(int) * patternLen);
+
+    computeLPS(pattern, patternLen, lps);
+
+    int i = 0, j = 0;
+    while (i < textLen) {
+        if (pattern[j] == text[i]) {
+            j++;
+            i++;
+        }
+
+        if (j == patternLen) {
+            count++;
+            printf("KMP找到匹配在位置 %d\n", i - j);
+            j = lps[j - 1];
+        } else if (i < textLen && pattern[j] != text[i]) {
+            if (j != 0)
+                j = lps[j - 1];
+            else
+                i++;
+        }
+    }
+
+    free(lps);
+    return count;
+}
+
+// 9. 压缩率分析函数
+void analyzeCompressionFactors(double compressionRatio, long originalSize, long compressedSize) {
+    printf("\n=== 压缩率分析 ===\n");
+    printf("当前压缩率: %.2f%%\n", compressionRatio);
+    
+    if (compressionRatio < 0) {
+        printf("警告: 压缩率异常，可能是小文件或特殊数据\n");
+        return;
+    }
+
+    printf("影响因素分析:\n");
+    
+    // 字符分布分析
+    int uniqueChars = 0;
+    for (int i = 0; i < MAX_CHAR; i++) {
+        if (charCount[i] > 0) uniqueChars++;
+    }
+    
+    printf("1. 字符种类数: %d\n", uniqueChars);
+    printf("2. 数据重复性: %s\n", 
+           (compressionRatio > 30) ? "高(良好)" : 
+           (compressionRatio > 15) ? "中等" : "低(较差)");
+    
+    // 文件大小影响
+    printf("3. 文件大小: %ld 字节\n", originalSize);
+    if (originalSize < 1000) {
+        printf("   小文件压缩效果通常较差\n");
+    }
+    
+    // 改进建议
+    printf("\n改进压缩率的方法:\n");
+    printf("1. 使用更大的文件(>10KB)\n");
+    printf("2. 处理重复性高的数据\n");
+    printf("3. 结合其他压缩技术(LZ77等)\n");
+    printf("4. 预处理数据(如排序、去重)\n");
+    printf("5. 使用自适应哈夫曼编码\n");
+}
+
+// 10. 主测试函数
+void testAllFunctions() {
+    printf("=== 文件压缩与关键字检索系统测试 ===\n\n");
+    
+    // 测试文件压缩
+    printf("1. 测试文件压缩:\n");
+    double ratio = compressFile("test_input.txt", "compressed.bin");
+    
+    // 测试文件解压
+    printf("\n2. 测试文件解压:\n");
+    decompressFile("compressed.bin", "decompressed.txt");
+    
+    // 测试检索功能
+    printf("\n3. 测试关键字检索:\n");
+    char testText[] = "This is a test text for searching algorithms testing.";
+    char pattern[] = "test";
+    
+    printf("BM算法找到 %d 个匹配\n", searchBM(testText, pattern));
+    printf("KMP算法找到 %d 个匹配\n", searchKMP(testText, pattern));
+    
+    // 测试通配符检索
+    printf("\n4. 测试通配符检索:\n");
+    char wildcardPattern[] = "t?st";
+    printf("通配符检索找到 %d 个匹配\n", searchWithWildcard(testText, wildcardPattern));
+    
+    // 测试中文文档处理
+    printf("\n5. 测试中文文档处理:\n");
+    processChineseDocument("chinese_test.txt");
+    
+    // 压缩率分析
+    printf("\n6. 压缩率分析:\n");
+    analyzeCompressionFactors(ratio, 1000, 650); // 示例数据
+}
+
+// 主函数
+int main(int argc, char* argv[]) {
+    if (argc == 1) {
+        // 无参数时运行测试
+        testAllFunctions();
+    } else if (argc == 4) {
+        // 命令行模式: 程序名 输入文件 输出文件 操作类型
+        if (strcmp(argv[3], "compress") == 0) {
+            compressFile(argv[1], argv[2]);
+        } else if (strcmp(argv[3], "decompress") == 0) {
+            decompressFile(argv[1], argv[2]);
+        } else {
+            printf("用法: %s 输入文件 输出文件 [compress|decompress]\n", argv[0]);
+        }
+    } else {
+        printf("文件压缩与关键字检索系统\n");
+        printf("用法:\n");
+        printf("  %s - 运行完整测试\n", argv[0]);
+        printf("  %s 输入文件 输出文件 compress - 压缩文件\n", argv[0]);
+        printf("  %s 输入文件 输出文件 decompress - 解压文件\n", argv[0]);
+    }
+    
+    return 0;
+}

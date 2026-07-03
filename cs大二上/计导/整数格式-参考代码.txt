@@ -1,0 +1,54 @@
+7-1 整数格式
+给定一个字符串，请分析该字符串格式，检查它是否符合10进制整数的表示格式。
+特别提醒：
+1、字符串如果有前导0，如0123，则该字符串不符合整数格式；
+2、+0，-0是不符合整数格式的，但+1和-1都是符合的；
+3、科学记数法是不符合的。
+输入格式:
+第一行为一个整数t(0<t<=10)，代表测试用例组数。后边t行字符串（每个字符串长度都不超过30，且不包含空格和制表符tab），每行代表一个待检测字符串。
+输出格式:
+共t行，依次对应输入的测试用例，如果符合则输出yes，否则输出no。
+#include<stdio.h>
+#define START 0
+#define SIGN 1
+#define DATA 2
+#define ZERO 4
+#define ERR 9
+#define END 10
+main()
+{
+   char ch;
+   int state,t;
+   scanf("%d",&t);getchar();
+   
+	for (int i=0;i<t;i++){		
+	    for(state=START,ch=getchar(); state!=END; ){
+	      switch(state){/*根据当前状态以及读入的字符决定状态的迁移*/
+		      case START:
+		           if(ch=='0')  state=ZERO;
+				   else if (ch=='+' || ch=='-') state=SIGN;
+				   else if (ch>='1' && ch<='9') state=DATA;
+				   else state=ERR; 
+				   break;   
+				case SIGN:
+					if (ch>='1' && ch<='9') state=DATA; 
+					else state=ERR;
+	              break; 
+				case DATA:
+					if (ch=='\n'){printf("yes\n");state=END;}
+					else if (ch<'0' || ch>'9') state=ERR;
+					  break;    
+	         	case ZERO:
+	         		if (ch=='\n'){printf("yes\n");state=END;}
+					else state=ERR;
+					  break;    
+			} /*switch*/ 
+			if (state==ERR && ch=='\n'){
+				printf("no\n");state=END;
+			}
+			if (state!=END) ch=getchar();
+	   }
+	}
+    return 0;	 
+}
+

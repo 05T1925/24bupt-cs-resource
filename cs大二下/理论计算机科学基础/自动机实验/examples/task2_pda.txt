@@ -1,0 +1,18 @@
+# 任务二测试下推自动机 M = ({q0,q1},{a,b},{B,z0},δ,q0,z0,Φ)
+# 终态集为空 => 以「空栈」方式接受。
+# 转移行格式：  当前状态,输入符号,栈顶符号 -> 新状态,压栈串
+#   输入符号为空(ε)时两逗号相邻，如  q1,,B
+#   压栈串为空(弹栈)时新状态后留空，如  q0,a,B -> q1,
+states: q0 q1
+input: a b
+stack: B z0
+start_state: q0
+start_stack: z0
+final:
+transitions:
+q0,b,z0 -> q0,Bz0
+q0,b,B  -> q0,BB
+q0,a,B  -> q1,
+q1,a,B  -> q1,
+q1,,B   -> q1,
+q1,,z0  -> q1,

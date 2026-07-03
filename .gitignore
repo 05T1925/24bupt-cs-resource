@@ -7,23 +7,88 @@ work/
 # OS/editor noise
 .DS_Store
 Thumbs.db
+desktop.ini
 *.swp
 *.tmp
-*.bak
+*.temp
+~$*
+**/~$*
 
-# Common build/cache output
-__pycache__/
-*.py[cod]
-.pytest_cache/
-node_modules/
-dist/
+# Visual Studio / C++ build artifacts
+.vs/
+.codex_check/
+Debug/
+Release/
+x64/
+x86/
 build/
+out/
+*.ipch
+*.obj
+*.pdb
+*.ilk
+*.exe
+*.dll
+*.lib
+*.exp
+*.VC.db
+*.VC.VC.opendb
+*.o
+*.out
 cmake-build-*/
 CMakeFiles/
 CMakeCache.txt
-*.o
-*.obj
-*.exe
-*.out
-*.class
 
+# Java build artifacts
+target/
+bin/
+*.class
+.idea/
+*.iml
+.maven-repository/
+
+# Generated review/render scratch directories
+.render_tmp/
+**/.render_tmp/
+tmp_render/
+**/tmp_render/
+tmp_xcopy_*/
+**/tmp_xcopy_*/
+tmp/
+**/tmp/
+soffice_convert_*/
+**/soffice_convert_*/
+soffice_profile_*/
+**/soffice_profile_*/
+
+# FPGA/EDA generated outputs
+db/
+**/db/
+incremental_db/
+**/incremental_db/
+output_files/
+**/output_files/
+simulation/modelsim/
+**/simulation/modelsim/
+*.rpt
+*.summary
+*.done
+*.pof
+*.sof
+*.pin
+*.qws
+*.bak
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Node/front-end output
+node_modules/
+dist/
+
+# GitHub rejects files larger than 100 MiB.
+*.sumnote*.docx
+cs大二上/离散/离散资料/离散数学及其应用（原书第8版）中文版.pdf
+cs大二上/离散/离散资料/离散数学-练习答案.pdf

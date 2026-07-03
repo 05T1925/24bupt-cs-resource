@@ -1,0 +1,2 @@
+这是一个测试文件。Hello world! 测试测试。
+哈夫曼编码实验。Huffman coding experiment.
