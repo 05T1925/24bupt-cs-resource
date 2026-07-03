@@ -1,0 +1,108 @@
+
+Windows IP Configuration
+
+   Host Name . . . . . . . . . . . . : 05T-1925
+   Primary Dns Suffix  . . . . . . . : 
+   Node Type . . . . . . . . . . . . : Hybrid
+   IP Routing Enabled. . . . . . . . : No
+   WINS Proxy Enabled. . . . . . . . : No
+
+Ethernet adapter ��̫��:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Realtek PCIe GbE Family Controller
+   Physical Address. . . . . . . . . : 60-CF-84-5C-29-1B
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+
+Unknown adapter ��������:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Sangfor aTrust VNIC
+   Physical Address. . . . . . . . . : 00-FF-FD-9F-3A-F5
+   DHCP Enabled. . . . . . . . . . . : No
+   Autoconfiguration Enabled . . . . : Yes
+
+Wireless LAN adapter ��������* 1:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Microsoft Wi-Fi Direct Virtual Adapter
+   Physical Address. . . . . . . . . : E8-B0-C5-2E-64-4B
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+
+Wireless LAN adapter ��������* 2:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Microsoft Wi-Fi Direct Virtual Adapter #2
+   Physical Address. . . . . . . . . : EA-B0-C5-2E-64-4A
+   DHCP Enabled. . . . . . . . . . . : No
+   Autoconfiguration Enabled . . . . : Yes
+
+Ethernet adapter ��̫�� 2:
+
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : VMware Virtual Ethernet Adapter for VMnet1
+   Physical Address. . . . . . . . . : 00-50-56-C0-00-01
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+   Link-local IPv6 Address . . . . . : fe80::df07:ff25:bded:e603%17(Preferred) 
+   IPv4 Address. . . . . . . . . . . : 192.168.32.1(Preferred) 
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Lease Obtained. . . . . . . . . . : 2026��6��6�� 21:15:05
+   Lease Expires . . . . . . . . . . : 2026��6��6�� 22:09:36
+   Default Gateway . . . . . . . . . : 
+   DHCP Server . . . . . . . . . . . : 192.168.32.254
+   DHCPv6 IAID . . . . . . . . . . . : 285233238
+   DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-2E-4F-2C-92-60-CF-84-5C-29-1B
+   NetBIOS over Tcpip. . . . . . . . : Enabled
+
+Ethernet adapter ��̫�� 3:
+
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : VMware Virtual Ethernet Adapter for VMnet8
+   Physical Address. . . . . . . . . : 00-50-56-C0-00-08
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+   Link-local IPv6 Address . . . . . : fe80::4301:8404:b334:fc72%18(Preferred) 
+   IPv4 Address. . . . . . . . . . . : 192.168.126.1(Preferred) 
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Lease Obtained. . . . . . . . . . : 2026��6��6�� 21:15:05
+   Lease Expires . . . . . . . . . . : 2026��6��6�� 22:09:36
+   Default Gateway . . . . . . . . . : 
+   DHCP Server . . . . . . . . . . . : 192.168.126.254
+   DHCPv6 IAID . . . . . . . . . . . : 302010454
+   DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-2E-4F-2C-92-60-CF-84-5C-29-1B
+   Primary WINS Server . . . . . . . : 192.168.126.2
+   NetBIOS over Tcpip. . . . . . . . : Enabled
+
+Wireless LAN adapter WLAN:
+
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Intel(R) Wi-Fi 6 AX201 160MHz
+   Physical Address. . . . . . . . . : E8-B0-C5-2E-64-4A
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+   IPv4 Address. . . . . . . . . . . : 10.21.225.70(Preferred) 
+   Subnet Mask . . . . . . . . . . . : 255.255.128.0
+   Lease Obtained. . . . . . . . . . : 2026��6��6�� 20:39:10
+   Lease Expires . . . . . . . . . . : 2026��6��6�� 23:31:59
+   Default Gateway . . . . . . . . . : 10.21.128.1
+   DHCP Server . . . . . . . . . . . : 10.3.9.2
+   DNS Servers . . . . . . . . . . . : 10.3.9.4
+                                       10.3.9.5
+                                       10.3.9.6
+   NetBIOS over Tcpip. . . . . . . . : Enabled
+
+Ethernet adapter ������������:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Bluetooth Device (Personal Area Network)
+   Physical Address. . . . . . . . . : E8-B0-C5-2E-64-4E
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes

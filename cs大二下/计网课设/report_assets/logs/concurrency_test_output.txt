@@ -1,0 +1,11 @@
+Concurrent UDP DNS query test: 10 threads, server=127.0.0.1:53
+domain=test1 qtype=1 request_id=17110 response_id=17110 id_match=True rcode=0 an=1 answers=[11.111.11.111] elapsed_ms=1.5 raw_len=39
+domain=test2 qtype=1 request_id=1974 response_id=1974 id_match=True rcode=0 an=1 answers=[22.22.222.222] elapsed_ms=1.7 raw_len=39
+domain=test0 qtype=1 request_id=48511 response_id=48511 id_match=True rcode=3 an=0 answers=[-] elapsed_ms=1.7 raw_len=23
+domain=www.bupt.cn qtype=1 request_id=15019 response_id=15019 id_match=True rcode=0 an=1 answers=[123.127.134.10] elapsed_ms=1.7 raw_len=45
+domain=www.example.com qtype=1 request_id=58912 response_id=58912 id_match=True rcode=0 an=2 answers=[104.20.23.154, 172.66.147.243] elapsed_ms=4.2 raw_len=65
+domain=www.baidu.com qtype=1 request_id=38602 response_id=38602 id_match=True rcode=0 an=3 answers=[compressed-or-name-data(18 bytes), 220.181.111.1, 220.181.111.232] elapsed_ms=5.9 raw_len=93
+domain=www.5dsoft.com qtype=1 request_id=57560 response_id=57560 id_match=True rcode=3 an=0 answers=[-] elapsed_ms=0.9 raw_len=32
+domain=WWW.5DSOFT.COM qtype=1 request_id=11554 response_id=11554 id_match=True rcode=0 an=1 answers=[185.53.179.146] elapsed_ms=5.7 raw_len=62
+domain=example.com qtype=1 request_id=29875 response_id=29875 id_match=True rcode=0 an=2 answers=[172.66.147.243, 104.20.23.154] elapsed_ms=5.7 raw_len=61
+domain=www.qq.com qtype=1 request_id=14756 response_id=14756 id_match=True rcode=0 an=2 answers=[compressed-or-name-data(36 bytes), 42.81.179.153] elapsed_ms=5.6 raw_len=92

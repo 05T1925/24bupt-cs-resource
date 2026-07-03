@@ -1,0 +1,33 @@
+source_code\control.c:26:19: warning: 'emptyBuffer' defined but not used [-Wunused-const-variable=]
+ static const char emptyBuffer[MAX_BUFSIZE] = { '\0' };
+                   ^~~~~~~~~~~
+source_code\resolve.c: In function 'ResolveQuery':
+source_code\resolve.c:174:35: warning: pointer targets in passing argument 2 of 'domainName_ntop' differ in signedness [-Wpointer-sign]
+     domainName_ntop(recvBuf + 12, domainName);
+                                   ^~~~~~~~~~
+source_code\resolve.c:99:12: note: expected 'unsigned char *' but argument is of type 'char *'
+ static int domainName_ntop(const unsigned char *nName, unsigned char *pName) {
+            ^~~~~~~~~~~~~~~
+source_code\resolve.c:244:9: warning: implicit declaration of function 'inet_pton'; did you mean 'inet_ntoa'? [-Wimplicit-function-declaration]
+         inet_pton(AF_INET, ip, answer + 12);
+         ^~~~~~~~~
+         inet_ntoa
+source_code\resolve.c: In function 'ResolveResponse':
+source_code\resolve.c:347:47: warning: pointer targets in passing argument 2 of 'domainName_ntop' differ in signedness [-Wpointer-sign]
+     domainlen = domainName_ntop(recvBuf + 12, domainName);
+                                               ^~~~~~~~~~
+source_code\resolve.c:99:12: note: expected 'unsigned char *' but argument is of type 'char *'
+ static int domainName_ntop(const unsigned char *nName, unsigned char *pName) {
+            ^~~~~~~~~~~~~~~
+source_code\resolve.c:361:5: warning: implicit declaration of function 'inet_ntop'; did you mean 'inet_ntoa'? [-Wimplicit-function-declaration]
+     inet_ntop(AF_INET, recvBuf + (12 + domainlen + 16), ip, 16);
+     ^~~~~~~~~
+     inet_ntoa
+source_code\dnsrelay.c:68: warning: ignoring #pragma comment  [-Wunknown-pragmas]
+ #pragma comment(lib, "ws2_32.lib")
+ 
+source_code\dnsrelay.c: In function 'main':
+source_code\dnsrelay.c:425:17: warning: implicit declaration of function 'inet_ntop'; did you mean 'inet_ntoa'? [-Wimplicit-function-declaration]
+                 inet_ntop(AF_INET, (void *)&addrCli.sin_addr, ipStrBuf, 16),
+                 ^~~~~~~~~
+                 inet_ntoa

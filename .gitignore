@@ -11,14 +11,24 @@ desktop.ini
 *.swp
 *.tmp
 *.temp
+*.log
+*.stdout
+*.stderr
+*.stdout.txt
+*.stderr.txt
 ~$*
 **/~$*
 
 # Visual Studio / C++ build artifacts
 .vs/
+.vscode/
 .codex_check/
 Debug/
 Release/
+Win32-Release/
+Win32-Debug/
+x64-Debug/
+x64-Release/
 x64/
 x86/
 build/
@@ -31,8 +41,16 @@ out/
 *.dll
 *.lib
 *.exp
+*.iobj
+*.ipdb
+*.idb
+*.recipe
+*.tlog
+*.lastbuildstate
+*.FileListAbsolute.txt
 *.VC.db
 *.VC.VC.opendb
+*.vcxproj.user
 *.o
 *.out
 cmake-build-*/
@@ -60,6 +78,10 @@ soffice_convert_*/
 **/soffice_convert_*/
 soffice_profile_*/
 **/soffice_profile_*/
+gbn-*/
+performance-tests-*/
+longtest-*/
+high-ber-longtest-*/
 
 # FPGA/EDA generated outputs
 db/

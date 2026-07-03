@@ -1,0 +1,2 @@
+Query: test1, QTYPE=1, server=127.0.0.1:53
+domain=test1 qtype=1 request_id=50808 response_id=50808 id_match=True rcode=0 an=1 answers=[11.111.11.111] elapsed_ms=1.3 raw_len=39

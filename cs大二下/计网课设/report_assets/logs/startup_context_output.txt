@@ -1,0 +1,4 @@
+Command: .\dnsrelay_gcc_build.exe -d 8.8.8.8 ..\资料\dnsrelay.txt
+Note: 服务由后台进程启动，标准输出重定向到 startup_output.txt；以下为测试脚本记录的启动上下文。
+Expected startup messages: Debug level 1; Name server 8.8.8.8:53; Database using ..\资料\dnsrelay.txt; Socket() is OK!; Bind() is OK!; ClientTable init.
+Captured stdout was empty, likely because the background process had not flushed buffered console output.

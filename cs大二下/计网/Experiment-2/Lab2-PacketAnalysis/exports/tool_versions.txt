@@ -1,0 +1,3 @@
+Wireshark 4.6.6 (v4.6.6-0-g3a22c3ef473d).
+TShark (Wireshark) 4.6.6 (v4.6.6-0-g3a22c3ef473d).
+Npcap 1.88; service npcap RUNNING

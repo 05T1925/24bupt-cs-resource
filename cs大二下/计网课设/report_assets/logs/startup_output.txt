@@ -1,0 +1,215 @@
+Debug level 1
+Name server 8.8.8.8:53
+Database using ..\����\dnsrelay.txt
+Socket() is OK!
+Bind() is OK!
+ClientTable init.
+距离上一次检查过去了 1782737572 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 2 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+距离上一次检查过去了 1 秒
+datagram arrived. Recieving...
+datagram received. 23 Bytes in all.
+收到一个请求报文 内容如下:
+cachesave: test1, 11.111.11.111, 120
+在数据库中找到记录 test1 : 11.111.11.111
+datagram sending to 127.0.0.1:56308
+datagram sending succeed 39 Bytes in all.
+发送了一个响应报文 内容如下:
+距离上一次检查过去了 0 秒
+datagram arrived. Recieving...
+datagram received. 23 Bytes in all.
+收到一个请求报文 内容如下:
+cachesave: test0, 0.0.0.0, 120
+在数据库中找到记录 test0 : 0.0.0.0
+datagram sending to 127.0.0.1:56309
+datagram sending succeed 23 Bytes in all.
+发送了一个响应报文 内容如下:
+距离上一次检查过去了 0 秒
+datagram arrived. Recieving...
+datagram received. 33 Bytes in all.
+收到一个请求报文 内容如下:
+未在数据库中找到记录: www.example.com
+收到ID为 847d 的请求报文
+datagram sending to 8.8.8.8:53
+datagram sending succeed 33 Bytes in all.
+发送了一个请求报文 内容如下:
+距离上一次检查过去了 0 秒
+FindCRecord:ID=0, expireTime=1782737644, originId=33917
+FindCRecord:ID=0, expireTime=1782737644, originId=33917
+datagram arrived. Recieving...
+datagram received. 65 Bytes in all.
+收到一个响应报文 内容如下:
+收到ID为 0 的响应报文
+FindCRecord:ID=0, expireTime=1782737644, originId=33917
+datagram sending to 127.0.0.1:56310
+datagram sending succeed 65 Bytes in all.
+发送了一个响应报文 内容如下:
+距离上一次检查过去了 0 秒
+FindCRecord:ID=0, expireTime=1782737644, originId=33917
+datagram arrived. Recieving...
+datagram received. 32 Bytes in all.
+收到一个请求报文 内容如下:
+未在数据库中找到记录: WWW.5DSOFT.COM
+收到ID为 457e 的请求报文
+datagram sending to 8.8.8.8:53
+datagram sending succeed 32 Bytes in all.
+发送了一个请求报文 内容如下:
+距离上一次检查过去了 0 秒
+FindCRecord:ID=1, expireTime=1782737644, originId=17790
+FindCRecord:ID=1, expireTime=1782737644, originId=17790
+datagram arrived. Recieving...
+datagram received. 48 Bytes in all.
+收到一个响应报文 内容如下:
+收到ID为 1 的响应报文
+FindCRecord:ID=1, expireTime=1782737644, originId=17790
+datagram sending to 127.0.0.1:56311
+datagram sending succeed 48 Bytes in all.
+发送了一个响应报文 内容如下:
+距离上一次检查过去了 1 秒
+FindCRecord:ID=1, expireTime=1782737644, originId=17790
+datagram arrived. Recieving...
+datagram received. 23 Bytes in all.
+收到一个请求报文 内容如下:
+cache命中: test1,test1
+在 cache 中找到了
+在数据库中找到记录 test1 : 11.111.11.111
+datagram sending to 127.0.0.1:56312
+datagram sending succeed 39 Bytes in all.
+发送了一个响应报文 内容如下:
+距离上一次检查过去了 0 秒
+datagram arrived. Recieving...
+datagram received. 23 Bytes in all.
+收到一个请求报文 内容如下:
+cachesave: test2, 22.22.222.222, 120
+在数据库中找到记录 test2 : 22.22.222.222
+datagram sending to 127.0.0.1:56313
+datagram sending succeed 39 Bytes in all.
+发送了一个响应报文 内容如下:
+距离上一次检查过去了 0 秒
+datagram arrived. Recieving...
+datagram received. 23 Bytes in all.
+收到一个请求报文 内容如下:
+cache命中: test0,test0
+在 cache 中找到了
+在数据库中找到记录 test0 : 0.0.0.0
+datagram sending to 127.0.0.1:56314
+datagram sending succeed 23 Bytes in all.
+发送了一个响应报文 内容如下:
+距离上一次检查过去了 0 秒
+datagram arrived. Recieving...
+datagram received. 29 Bytes in all.
+收到一个请求报文 内容如下:
+cachesave: www.bupt.cn, 123.127.134.10, 120
+在数据库中找到记录 www.bupt.cn : 123.127.134.10
+datagram sending to 127.0.0.1:56315
+datagram sending succeed 45 Bytes in all.
+发送了一个响应报文 内容如下:
+距离上一次检查过去了 0 秒
+datagram arrived. Recieving...
+datagram received. 33 Bytes in all.
+收到一个请求报文 内容如下:
+未在数据库中找到记录: www.example.com
+收到ID为 e620 的请求报文
+datagram sending to 8.8.8.8:53
+datagram sending succeed 33 Bytes in all.
+发送了一个请求报文 内容如下:
+距离上一次检查过去了 0 秒
+FindCRecord:ID=2, expireTime=1782737645, originId=58912
+FindCRecord:ID=2, expireTime=1782737645, originId=58912
+datagram arrived. Recieving...
+datagram received. 31 Bytes in all.
+收到一个请求报文 内容如下:
+未在数据库中找到记录: www.baidu.com
+收到ID为 96ca 的请求报文
+datagram sending to 8.8.8.8:53
+datagram sending succeed 31 Bytes in all.
+发送了一个请求报文 内容如下:
+距离上一次检查过去了 0 秒
+FindCRecord:ID=2, expireTime=1782737645, originId=58912
+FindCRecord:ID=2, expireTime=1782737645, originId=58912
+datagram arrived. Recieving...
+datagram received. 32 Bytes in all.
+收到一个请求报文 内容如下:
+cachesave: www.5dsoft.com, 0.0.0.0, 120
+在数据库中找到记录 www.5dsoft.com : 0.0.0.0
+datagram sending to 127.0.0.1:56318
+datagram sending succeed 32 Bytes in all.
+发送了一个响应报文 内容如下:
+距离上一次检查过去了 0 秒
+FindCRecord:ID=2, expireTime=1782737645, originId=58912
+FindCRecord:ID=2, expireTime=1782737645, originId=58912
+datagram arrived. Recieving...
+datagram received. 32 Bytes in all.
+收到一个请求报文 内容如下:
+未在数据库中找到记录: WWW.5DSOFT.COM
+收到ID为 2d22 的请求报文
+datagram sending to 8.8.8.8:53
+datagram sending succeed 32 Bytes in all.
+发送了一个请求报文 内容如下:
+距离上�

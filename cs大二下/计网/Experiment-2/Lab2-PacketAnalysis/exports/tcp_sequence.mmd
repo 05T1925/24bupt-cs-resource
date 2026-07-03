@@ -1,0 +1,15 @@
+sequenceDiagram
+    participant C as Client 10.21.225.70:60497
+    participant S as Server 104.20.23.154:80
+
+    C->>S: Frame 16 SYN, Seq=0
+    S->>C: Frame 17 SYN+ACK, Seq=0, Ack=1
+    C->>S: Frame 18 ACK, Seq=1, Ack=1
+
+    C->>S: Frame 19 HTTP request data, Seq=1, Ack=1, Len=94
+    S->>C: Frames 21-22 HTTP response data, Len=868
+
+    S->>C: Frame 24 FIN+ACK, Seq=869, Ack=95
+    C->>S: Frame 25 ACK, Seq=95, Ack=870
+    C->>S: Frame 26 FIN+ACK, Seq=95, Ack=870
+    S->>C: Frame 27 ACK, Seq=870, Ack=96

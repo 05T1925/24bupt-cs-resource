@@ -1,0 +1,2 @@
+Query: WWW.5DSOFT.COM, QTYPE=1, server=127.0.0.1:53
+domain=WWW.5DSOFT.COM qtype=1 request_id=17790 response_id=17790 id_match=True rcode=0 an=1 answers=[185.53.179.146] elapsed_ms=271.1 raw_len=48

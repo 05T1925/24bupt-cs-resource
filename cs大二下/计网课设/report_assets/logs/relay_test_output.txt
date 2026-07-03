@@ -1,0 +1,2 @@
+Query: www.example.com, QTYPE=1, server=127.0.0.1:53
+domain=www.example.com qtype=1 request_id=33917 response_id=33917 id_match=True rcode=0 an=2 answers=[104.20.23.154, 172.66.147.243] elapsed_ms=99.9 raw_len=65
